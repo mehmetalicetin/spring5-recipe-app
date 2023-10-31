@@ -1,0 +1,4 @@
+https://github.com/springframeworkguru/spring5-recipe-app.git
+
+
+https://github.com/springframeworkguru/spring5-recipe-app/tree/using-setters-on-pojos
