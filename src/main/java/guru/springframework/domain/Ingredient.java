@@ -1,32 +1,45 @@
 package guru.springframework.domain;
 
-import javax.persistence.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+import javax.persistence.*;
+import java.math.BigDecimal;
+
+/**
+ * Created by jt on 6/13/17.
+ */
+@Data
+@EqualsAndHashCode(exclude = {"recipe"})
 @Entity
 public class Ingredient {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 
-	@ManyToOne
-	private Recipe recipe;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String description;
+    private BigDecimal amount;
 
-	@OneToOne(fetch = FetchType.EAGER)
-	private UnitOfMeasure unitOfMeasure;
+    @OneToOne(fetch = FetchType.EAGER)
+    private UnitOfMeasure uom;
 
-	public Long getId() {
-		return id;
-	}
+    @ManyToOne
+    private Recipe recipe;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Ingredient() {
+    }
 
-	public Recipe getRecipe() {
-		return recipe;
-	}
+    public Ingredient(String description, BigDecimal amount, UnitOfMeasure uom) {
+        this.description = description;
+        this.amount = amount;
+        this.uom = uom;
+    }
 
-	public void setRecipe(Recipe recipe) {
-		this.recipe = recipe;
-	}
+    public Ingredient(String description, BigDecimal amount, UnitOfMeasure uom, Recipe recipe) {
+        this.description = description;
+        this.amount = amount;
+        this.uom = uom;
+        this.recipe = recipe;
+    }
+
 }

@@ -1,7 +1,7 @@
 package guru.springframework.service;
 
 import guru.springframework.domain.Recipe;
-import guru.springframework.repositories.RecipeRepositories;
+import guru.springframework.repositories.RecipeRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -17,7 +17,7 @@ public class RecipeServiceImplTest {
 	RecipeServiceImpl recipeService;
 
 	@Mock
-	RecipeRepositories recipeRepositories;
+	RecipeRepository recipeRepositories;
 
 	@Before
 	public void setUp() throws Exception {

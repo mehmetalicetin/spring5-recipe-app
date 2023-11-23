@@ -1,7 +1,7 @@
 package guru.springframework.service;
 
 import guru.springframework.domain.Recipe;
-import guru.springframework.repositories.RecipeRepositories;
+import guru.springframework.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +11,9 @@ import java.util.Set;
 @Slf4j
 @Service
 public class RecipeServiceImpl implements RecipeService{
-	private final RecipeRepositories recipeRepositories;
+	private final RecipeRepository recipeRepositories;
 
-	public RecipeServiceImpl(RecipeRepositories recipeRepositories) {
+	public RecipeServiceImpl(RecipeRepository recipeRepositories) {
 		this.recipeRepositories = recipeRepositories;
 	}
 

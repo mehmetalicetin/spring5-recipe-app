@@ -15,11 +15,9 @@ public class IndexController {
 		this.recipeService = recipeService;
 	}
 
-	@RequestMapping("/")
+	@RequestMapping({"","/","/index"})
 	public String getIndexPage(Model model){
-		log.debug("Getting index page");
 		model.addAttribute("recipes", recipeService.geRecipes());
-		//throw new RuntimeException("aaaaa fatal error :)");
 		return "index";
 	}
 }

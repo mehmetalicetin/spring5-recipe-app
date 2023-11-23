@@ -9,7 +9,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.swing.*;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -18,7 +17,7 @@ import static org.junit.Assert.*;
 @DataJpaTest
 public class UnitOfMeasureRepositoriesTest {
 	@Autowired
-	UnitOfMeasureRepositories unitOfMeasureRepositories;
+	UnitOfMeasureRepository unitOfMeasureRepositories;
 
 	@Before
 	public void setUp() throws Exception {

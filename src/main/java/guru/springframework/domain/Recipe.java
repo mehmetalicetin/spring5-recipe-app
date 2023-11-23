@@ -1,64 +1,58 @@
 package guru.springframework.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Created by jt on 6/13/17.
+ */
+@Data
 @Entity
 public class Recipe {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe") // if Recipe is deleted, referenced objects will be deleted too.
-	private Set<Notes> notes; //Recipe is the owner entity.
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-	private Set<Ingredient> ingredients;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@Enumerated(value = EnumType.STRING)
-	private Difficulty difficulty;
+    private String description;
+    private Integer prepTime;
+    private Integer cookTime;
+    private Integer servings;
+    private String source;
+    private String url;
 
-	@ManyToMany
-	@JoinTable(name = "recipe_category", joinColumns = @JoinColumn(name = "recipe_id"),
-										 inverseJoinColumns = @JoinColumn(name = "category_id"))
-	private Set<Category> categories;
+    @Lob
+    private String directions;
 
-	public Long getId() {
-		return id;
-	}
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private Set<Ingredient> ingredients = new HashSet<>();
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Lob
+    private Byte[] image;
 
-	public Set<Notes> getNotes() {
-		return notes;
-	}
+    @Enumerated(value = EnumType.STRING)
+    private Difficulty difficulty;
 
-	public void setNotes(Set<Notes> notes) {
-		this.notes = notes;
-	}
+    @OneToOne(cascade = CascadeType.ALL)
+    private Notes notes;
 
-	public Set<Ingredient> getIngredients() {
-		return ingredients;
-	}
+    @ManyToMany
+    @JoinTable(name = "recipe_category",
+        joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories = new HashSet<>();
 
-	public void setIngredients(Set<Ingredient> ingredients) {
-		this.ingredients = ingredients;
-	}
+    public void setNotes(Notes notes) {
+        this.notes = notes;
+        notes.setRecipe(this);
+    }
 
-	public Difficulty getDifficulty() {
-		return difficulty;
-	}
-
-	public void setDifficulty(Difficulty difficulty) {
-		this.difficulty = difficulty;
-	}
-
-	public Set<Category> getCategories() {
-		return categories;
-	}
-
-	public void setCategories(Set<Category> categories) {
-		this.categories = categories;
-	}
+    public Recipe addIngredient(Ingredient ingredient){
+        ingredient.setRecipe(this);
+        this.ingredients.add(ingredient);
+        return this;
+    }
 }
