@@ -1,1 +1,4 @@
 https://github.com/borumv/spring5-recipe-app/blob/master/src/main/resources/templates/recipe/show.html
+
+Work:
+https://www.youtube.com/watch?v=Kv-EZtNzgkg&ab_channel=DouglasSchmidt
