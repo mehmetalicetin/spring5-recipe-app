@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Temporal;
 import java.beans.Transient;
 import java.util.HashSet;
 import java.util.Objects;
@@ -142,6 +143,4 @@ public class IngredientServiceImpl implements IngredientService{
 						.findFirst()
 						.orElseThrow());
 	}
-
-
 }
