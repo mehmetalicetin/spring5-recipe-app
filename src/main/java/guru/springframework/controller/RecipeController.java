@@ -54,22 +54,4 @@ public class RecipeController {
 		recipeService.deleteById(Long.valueOf(id));
 		return "redirect:/";
 	}
-
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	@ExceptionHandler(NotFoundException.class)
-	public ModelAndView handleNotFound(Exception exception){
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("404Error");
-		modelAndView.addObject("exception", exception);
-		return modelAndView;
-	}
-
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	@ExceptionHandler(NumberFormatException.class)
-	public ModelAndView handleNumberFormat(Exception exception){
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("400Error");
-		modelAndView.addObject("exception", exception);
-		return modelAndView;
-	}
 }
