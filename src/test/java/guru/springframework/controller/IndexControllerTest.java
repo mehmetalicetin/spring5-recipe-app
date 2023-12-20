@@ -71,19 +71,6 @@ public class IndexControllerTest {
 				.addAttribute(Mockito.eq("recipes"), Mockito.anySet());
 	}
 
-	@Test
-	public void testSpliterator(){
-		List<Integer> a = List.of(1,2,3,4,5);
-		Spliterator<Integer> spliterator = a.spliterator();
-		int characteristics = spliterator.characteristics();
-		long estimateSize = spliterator.estimateSize();
-		System.out.println("characteristics : "+characteristics);
-		System.out.println("estimateSize : "+estimateSize);
-		spliterator.forEachRemaining(System.out::println);
-		Spliterator<Integer> trySplit = spliterator.trySplit();
-		trySplit.forEachRemaining(System.out::println);
-	}
-
 	public class Article{
 		private List<Author> listOfAuthors;
 		private int id;
